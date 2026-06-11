@@ -83,6 +83,30 @@ sudo lsof -iTCP:5900 -sTCP:LISTEN
 手机连 Mac 同一 WiFi，用本 App 填 Mac 的局域网 IP 试连；通了之后再换成
 Tailscale IP，关掉手机 WiFi 用流量测“随时随地”是否成立。
 
+## 还原 / 卸载
+
+`setup.sh` **第一次运行时**会先把原始状态快照到 `~/.macremote-original-state`，
+之后任何时候想撤销：
+
+```bash
+bash mac/restore.sh
+```
+
+还原脚本按快照**精确回滚**，原则是"只撤销 setup 造成的差异"：
+
+| setup 改了什么 | restore 怎么处理 |
+| --- | --- |
+| 开启了屏幕共享 | 原本就开着 → 不动；原本关着 → 关回去（launchctl，失败则打开设置页引导） |
+| 引导你设了 VNC 密码 | 原本就设过 → 不动；新设的 → 引导取消勾选，并可选删除密码文件 |
+| 装了 Tailscale | 原本就装了 → 不动；脚本装的 → brew 卸载（非 brew 装的给手动步骤） |
+| pmset 防睡眠三项 | 恢复成快照里的**原值**（不是出厂值）；无快照时才提供 `pmset restoredefaults` 兜底 |
+| keepawake plist（若用过） | unload + 删除 |
+
+每一步都会先征求同意；还原完成后快照归档为 `.restored-时间戳`，
+下次再跑 setup.sh 会重新记录新快照。
+
+手机端不想用了：卸载 App 和 Tailscale 即可，连接信息只存在手机本地。
+
 ## 常见问题
 
 | 现象 | 原因 / 解决 |

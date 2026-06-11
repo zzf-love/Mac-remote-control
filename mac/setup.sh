@@ -7,6 +7,9 @@
 # 能自动做的自动做（会逐项征求同意，部分需要 sudo）；
 # macOS 出于安全设计不允许脚本代劳的（如设置 VNC 密码），
 # 会直接帮你打开对应的设置页面并告诉你点哪里。
+#
+# 还原：首次运行前会把原始状态快照到 ~/.macremote-original-state，
+# 之后任何时候运行 `bash restore.sh` 都可以按快照精确回滚。
 set -u
 
 GREEN=$'\033[32m'; YELLOW=$'\033[33m'; RED=$'\033[31m'; BOLD=$'\033[1m'; RESET=$'\033[0m'
@@ -17,6 +20,8 @@ ask()  { printf "%s [y/N] " "$1"; read -r REPLY; [ "$REPLY" = "y" ] || [ "$REPLY
 
 [ "$(uname)" = "Darwin" ] || { bad "这个脚本需要在 Mac 上运行"; exit 1; }
 
+BACKUP_FILE="$HOME/.macremote-original-state"
+
 open_sharing_pane() {
     open "x-apple.systempreferences:com.apple.Sharing-Settings.extension" 2>/dev/null \
         || open "/System/Library/PreferencePanes/SharingPref.prefPane" 2>/dev/null \
@@ -24,6 +29,38 @@ open_sharing_pane() {
 }
 
 vnc_listening() { nc -z 127.0.0.1 5900 >/dev/null 2>&1; }
+
+detect_tailscale() {
+    TS=""
+    command -v tailscale >/dev/null 2>&1 && TS="tailscale"
+    [ -z "$TS" ] && [ -x "/Applications/Tailscale.app/Contents/MacOS/Tailscale" ] \
+        && TS="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+}
+
+# 取接电源（AC）档的 pmset 值；台式机没有电池档时同样适用
+get_ac_pmset() {
+    pmset -g custom 2>/dev/null | awk -v k="$1" '
+        /Battery Power:/{inbat=1} /AC Power:/{inbat=0}
+        !inbat && $1==k {v=$2} END{print v}'
+}
+
+# ---------- 0/4 原始状态快照（只在第一次运行时记录） ----------
+if [ ! -f "$BACKUP_FILE" ]; then
+    detect_tailscale
+    {
+        echo "# Mac 遥控 setup.sh 首次运行前的原始状态快照"
+        echo "# restore.sh 依据本文件精确回滚；请勿手工修改"
+        echo "CREATED_AT=$(date '+%Y-%m-%d %H:%M:%S')"
+        if vnc_listening; then echo "SCREEN_SHARING_WAS_ON=yes"; else echo "SCREEN_SHARING_WAS_ON=no"; fi
+        if [ -f "/Library/Preferences/com.apple.VNCSettings.txt" ]; then echo "VNC_PASSWORD_FILE_EXISTED=yes"; else echo "VNC_PASSWORD_FILE_EXISTED=no"; fi
+        if [ -n "$TS" ]; then echo "TAILSCALE_WAS_INSTALLED=yes"; else echo "TAILSCALE_WAS_INSTALLED=no"; fi
+        echo "PMSET_AC_SLEEP=$(get_ac_pmset sleep)"
+        echo "PMSET_AC_TCPKEEPALIVE=$(get_ac_pmset tcpkeepalive)"
+        echo "PMSET_AC_WOMP=$(get_ac_pmset womp)"
+    } > "$BACKUP_FILE"
+    ok "已把原始状态快照到 $BACKUP_FILE（还原时用）"
+    echo
+fi
 
 echo "${BOLD}===== Mac 遥控 · 服务端体检 =====${RESET}"
 echo
@@ -64,11 +101,7 @@ echo
 
 # ---------- 3/4 Tailscale ----------
 echo "${BOLD}[3/4] Tailscale 组网${RESET}"
-TS=""
-command -v tailscale >/dev/null 2>&1 && TS="tailscale"
-[ -z "$TS" ] && [ -x "/Applications/Tailscale.app/Contents/MacOS/Tailscale" ] \
-    && TS="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
-
+detect_tailscale
 TS_IP=""
 if [ -n "$TS" ]; then
     TS_IP=$("$TS" ip -4 2>/dev/null | head -1)
@@ -119,3 +152,4 @@ fi
 echo
 echo "提示：先让手机连 Mac 同一 WiFi，用局域网 IP 试连验证服务端没问题，"
 echo "      再换 Tailscale IP + 手机流量验证“随时随地”。"
+echo "还原：随时运行 bash restore.sh，会按 $BACKUP_FILE 的快照精确回滚。"

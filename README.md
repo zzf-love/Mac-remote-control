@@ -37,6 +37,8 @@ docs/
 ├── mac-setup.md   Mac 端一次性配置（屏幕共享、VNC 密码、Tailscale、防睡眠）
 └── roadmap.md     升级路线（自研 agent、WebRTC、快捷任务面板、AWS 自建中继……）
 mac/
+├── setup.sh     一键体检/配置（运行前自动快照原始状态）
+├── restore.sh   按快照精确还原 setup.sh 的全部改动
 └── com.macremote.keepawake.plist   防睡眠 launchd 配置（可选）
 .github/workflows/android.yml       CI：跑测试 + 自动构建 APK
 ```
@@ -51,6 +53,8 @@ mac/
 bash mac/setup.sh
 ```
 
+脚本首次运行会先快照系统原始状态；想撤销全部改动随时跑
+`bash mac/restore.sh`，按快照精确回滚（原本就开着的东西不会被误关）。
 详细说明与排错见 [docs/mac-setup.md](docs/mac-setup.md)。
 
 ### 2. 获取 APK（按方便程度排序）
