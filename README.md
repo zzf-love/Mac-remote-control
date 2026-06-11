@@ -45,15 +45,20 @@ mac/
 
 ### 1. 配置 Mac（一次性，约 10 分钟）
 
-按 [docs/mac-setup.md](docs/mac-setup.md) 完成：开启屏幕共享 → 设置 VNC 密码 →
-装 Tailscale → 关掉自动睡眠。
+在 Mac 终端里跑一键体检脚本，它能自动做的自动做、不能自动的会打开对应设置页：
 
-### 2. 获取 APK（两选一）
+```bash
+bash mac/setup.sh
+```
 
-- **不装 Android Studio**：把代码推到 GitHub 后，仓库 **Actions** 页签 →
-  最近一次 "Android CI" 运行 → 底部 Artifacts 下载 `MacRemote-debug-apk`，
-  传到手机安装（需允许安装未知来源应用）。
-- **本地构建**：装 Android Studio 打开 `android/` 目录，或命令行
+详细说明与排错见 [docs/mac-setup.md](docs/mac-setup.md)。
+
+### 2. 获取 APK（按方便程度排序）
+
+- **仓库首页右侧 [Releases](../../releases/latest)** → 下载 `MacRemote.apk`
+  装到手机（需允许安装未知来源应用）。每次推送代码后 CI 自动更新。
+- 备选：**Actions** 页签 → 最近一次运行 → 底部 Artifacts。
+- 本地构建：Android Studio 打开 `android/` 目录，或
   `cd android && ./gradlew :app:assembleDebug`，产物在
   `android/app/build/outputs/apk/debug/`。
 

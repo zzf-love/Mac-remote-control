@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # 用于发布 Release
     steps:
       - uses: actions/checkout@v4
 
@@ -24,8 +26,20 @@ jobs:
       - name: 构建 Debug APK
         run: cd android && ./gradlew --no-daemon :app:assembleDebug
 
-      - name: 上传 APK（到 Actions 构件，可直接下载安装）
+      - name: 上传 APK（Actions 构件备份）
         uses: actions/upload-artifact@v4
         with:
           name: MacRemote-debug-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
+
+      - name: 发布到 Releases（仓库首页固定下载入口）
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cp android/app/build/outputs/apk/debug/app-debug.apk MacRemote.apk
+          gh release delete latest --yes --cleanup-tag || true
+          gh release create latest MacRemote.apk \
+            --prerelease \
+            --title "最新自动构建 APK（$(date +%Y-%m-%d)）" \
+            --notes "由 Android CI 基于 commit ${GITHUB_SHA:0:7} 自动构建。下载下方 MacRemote.apk 安装到安卓手机（需允许安装未知来源应用）。" \
+            --target "$GITHUB_SHA"

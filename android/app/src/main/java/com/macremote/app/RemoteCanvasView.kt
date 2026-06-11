@@ -57,6 +57,9 @@ class RemoteCanvasView @JvmOverloads constructor(
     // 长按拖拽状态
     private var dragging = false
 
+    // 用户是否主动缩放过（键盘弹出等导致视图改变尺寸时，保留用户的缩放，不强制回到适配大小）
+    private var userZoomed = false
+
     // 双指手势状态
     private var multiMode = MULTI_NONE
     private var multiStartTime = 0L
@@ -82,6 +85,7 @@ class RemoteCanvasView @JvmOverloads constructor(
     /** 必须在 UI 线程调用。传入的 Bitmap 由 RFB 读线程持续写入。 */
     fun setRemoteBitmap(bmp: Bitmap?) {
         bitmap = bmp
+        userZoomed = false
         fitToScreen()
         invalidate()
     }
@@ -99,7 +103,15 @@ class RemoteCanvasView @JvmOverloads constructor(
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        fitToScreen()
+        val bmp = bitmap
+        if (bmp == null || !userZoomed) {
+            fitToScreen()
+        } else if (w > 0 && h > 0) {
+            minScale = min(w.toFloat() / bmp.width, h.toFloat() / bmp.height)
+            if (scale < minScale) scale = minScale
+            clampPan()
+            invalidate()
+        }
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -241,6 +253,7 @@ class RemoteCanvasView @JvmOverloads constructor(
         when (multiMode) {
             MULTI_ZOOM -> {
                 if (prevSpan > 0 && curSpan > 0) {
+                    userZoomed = true
                     val factor = curSpan / prevSpan
                     val newScale = (scale * factor).coerceIn(minScale, max(6f, minScale * 10f))
                     val applied = newScale / scale

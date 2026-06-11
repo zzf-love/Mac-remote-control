@@ -12,17 +12,20 @@
 
         <activity
             android:name=".ConnectActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- configChanges：旋转/键盘弹出时不重建 Activity，保持 VNC 连接不断 -->
+        <!-- 锁定竖屏：横屏下软键盘会盖住整个画面，体验差；
+             configChanges：键盘弹出等变化不重建 Activity，保持 VNC 连接不断 -->
         <activity
             android:name=".RemoteActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboard|keyboardHidden|navigation|uiMode"
             android:windowSoftInputMode="adjustResize" />
     </application>
