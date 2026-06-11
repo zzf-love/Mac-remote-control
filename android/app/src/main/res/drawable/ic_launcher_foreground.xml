@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- 显示器外框 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,34 h48 a5,5 0 0 1 5,5 v26 a5,5 0 0 1 -5,5 h-48 a5,5 0 0 1 -5,-5 v-26 a5,5 0 0 1 5,-5 z" />
+    <!-- 屏幕 -->
+    <path
+        android:fillColor="#64B5F6"
+        android:pathData="M30,39 h48 v21 h-48 z" />
+    <!-- 信号波纹 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,52 a4,4 0 0 1 8,0 a4,4 0 0 1 -8,0 z" />
+    <!-- 支架 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,70 h8 v5 h-8 z M42,75 h24 v4 h-24 z" />
+</vector>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 用平台自带 Material 主题，App 零外部依赖 -->
+    <style name="Theme.MacRemote" parent="android:Theme.Material.NoActionBar">
+        <item name="android:colorPrimary">#1E88E5</item>
+        <item name="android:colorPrimaryDark">#0D47A1</item>
+        <item name="android:colorAccent">#40C4FF</item>
+        <item name="android:windowBackground">#FF12161A</item>
+    </style>
+</resources>

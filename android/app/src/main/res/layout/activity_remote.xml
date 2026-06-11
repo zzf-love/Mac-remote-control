@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF000000">
+
+    <com.macremote.app.RemoteCanvasView
+        android:id="@+id/remote_canvas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <HorizontalScrollView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="#A6101418"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
+
+            <Button
+                android:id="@+id/btn_keyboard"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="52dp"
+                android:text="@string/key_keyboard"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn_esc"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="52dp"
+                android:text="@string/key_esc"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn_tab"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="52dp"
+                android:text="@string/key_tab"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn_cmd"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:text="@string/key_cmd"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn_opt"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:text="@string/key_opt"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn_ctrl"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:text="@string/key_ctrl"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn_shift"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:text="@string/key_shift"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn_left"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="44dp"
+                android:text="@string/key_left"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn_up"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="44dp"
+                android:text="@string/key_up"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn_down"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="44dp"
+                android:text="@string/key_down"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn_right"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="44dp"
+                android:text="@string/key_right"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn_paste"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="52dp"
+                android:text="@string/key_paste"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn_disconnect"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="52dp"
+                android:text="@string/key_disconnect"
+                android:textColor="#FF8A80" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/status_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+</FrameLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  防系统睡眠的 launchd 配置（caffeinate -s：接电源时阻止系统睡眠）。
+  安装：
+    cp mac/com.macremote.keepawake.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.macremote.keepawake.plist
+  卸载：
+    launchctl unload ~/Library/LaunchAgents/com.macremote.keepawake.plist
+    rm ~/Library/LaunchAgents/com.macremote.keepawake.plist
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.macremote.keepawake</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/caffeinate</string>
+        <string>-s</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+</dict>
+</plist>

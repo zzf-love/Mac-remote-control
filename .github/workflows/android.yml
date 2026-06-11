@@ -1,0 +1,31 @@
+name: Android CI
+
+on:
+  push:
+    branches: ["**"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: android-actions/setup-android@v3
+
+      - name: 协议核心单元测试
+        run: cd android && ./gradlew --no-daemon -p core test
+
+      - name: 构建 Debug APK
+        run: cd android && ./gradlew --no-daemon :app:assembleDebug
+
+      - name: 上传 APK（到 Actions 构件，可直接下载安装）
+        uses: actions/upload-artifact@v4
+        with:
+          name: MacRemote-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
