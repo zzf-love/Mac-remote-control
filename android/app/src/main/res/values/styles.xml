@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- 表单字段上方的小标签：大写、加宽字距，控制台仪表感 -->
+    <!-- 表单字段上方的小标签 -->
     <style name="FieldLabel">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">11sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/text_secondary</item>
-        <item name="android:letterSpacing">0.18</item>
         <item name="android:layout_marginBottom">8dp</item>
     </style>
 

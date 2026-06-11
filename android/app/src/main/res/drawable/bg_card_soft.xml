@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- 次级卡片：更安静的面板，用于提示/帮助 -->
-<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-    <solid android:color="@color/surface_soft" />
-    <corners android:radius="14dp" />
-    <stroke android:width="1dp" android:color="@color/stroke_soft" />
-</shape>
