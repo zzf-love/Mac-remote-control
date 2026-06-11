@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Mac 遥控</string>
-    <string name="connect_hint">连接 macOS 自带的“屏幕共享”(VNC)。推荐 Mac 与手机都加入 Tailscale，填 Mac 的 Tailscale IP。配置方法见仓库 docs/mac-setup.md。</string>
-    <string name="host_hint">Mac 地址（如 100.x.y.z）</string>
-    <string name="port_hint">端口（默认 5900）</string>
-    <string name="password_hint">VNC 密码（Mac 端设置，最长 8 位）</string>
-    <string name="connect">连接</string>
-    <string name="connecting">正在连接 %1$s …</string>
+    <string name="connect_subtitle">REMOTE · ENCRYPTED · ANYWHERE</string>
+
+    <string name="label_host">目标主机 · HOST</string>
+    <string name="label_port">端口 · PORT</string>
+    <string name="label_password">VNC 密码 · KEY</string>
+    <string name="host_hint">100.x.y.z（Tailscale IP）</string>
+    <string name="port_hint">5900</string>
+    <string name="password_hint">Mac 端设置，最长 8 位</string>
+    <string name="connect">建立连接</string>
+    <string name="connecting">正在建立链路\n%1$s</string>
     <string name="error_no_host">请填写 Mac 的地址</string>
     <string name="error_bad_port">端口无效</string>
     <string name="clipboard_empty">手机剪贴板为空</string>
-    <string name="gesture_help">手势：单击=左键 · 双击=双击 · 长按拖动=拖拽 · 双指轻点=右键 · 单指拖=移动画面 · 双指捏合=缩放 · 双指上下=滚动\n工具栏 ⌘⌥⌃⇧ 为粘滞键：点亮后再敲键盘组成快捷键（如 ⌘+C）。</string>
+
+    <string name="gesture_help">单击 左键 · 双击 双击 · 长按拖动 拖拽 · 双指轻点 右键\n单指拖 移动画面 · 双指捏合 缩放 · 双指上下 滚动\n⌘⌥⌃⇧ 为粘滞键：点亮后敲键盘组成快捷键</string>
+    <string name="footer">MacRemote v0.2 · 自研 RFB 引擎 · 建议仅经 Tailscale 访问</string>
+
     <string name="key_keyboard">键盘</string>
-    <string name="key_esc">Esc</string>
-    <string name="key_tab">Tab</string>
+    <string name="key_esc">ESC</string>
+    <string name="key_tab">TAB</string>
     <string name="key_cmd">⌘</string>
     <string name="key_opt">⌥</string>
     <string name="key_ctrl">⌃</string>

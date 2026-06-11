@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 全局背景：深空底色 + 顶部冷光晕 + 右下一抹极淡的青色辉光 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/bg_deep" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:centerX="0.5"
+                android:centerY="0.0"
+                android:gradientRadius="520dp"
+                android:startColor="@color/bg_glow"
+                android:endColor="#000A0E14" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:centerX="1.0"
+                android:centerY="1.0"
+                android:gradientRadius="420dp"
+                android:startColor="#1A00E5FF"
+                android:endColor="#0000E5FF" />
+        </shape>
+    </item>
+</layer-list>

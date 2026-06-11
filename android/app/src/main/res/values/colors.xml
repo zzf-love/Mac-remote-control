@@ -1,4 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ic_launcher_background">#0D47A1</color>
+    <!-- ====== 设计系统 · 深空控制台 ====== -->
+    <!-- 背景层 -->
+    <color name="bg_deep">#0A0E14</color>
+    <color name="bg_canvas">#05080C</color>
+    <color name="bg_glow">#14253D</color>
+    <color name="surface">#111A26</color>
+    <color name="surface_soft">#0E1620</color>
+    <color name="surface_field">#0B1320</color>
+    <color name="surface_key">#14202F</color>
+    <color name="surface_key_pressed">#1C2C40</color>
+
+    <!-- 描边 -->
+    <color name="stroke">#223349</color>
+    <color name="stroke_soft">#1B2838</color>
+    <color name="stroke_field">#263749</color>
+    <color name="stroke_key">#243650</color>
+
+    <!-- 强调色：霓虹青 → 电光蓝 -->
+    <color name="accent">#00E5FF</color>
+    <color name="accent_deep">#2979FF</color>
+    <color name="accent_dim">#1AA7BD</color>
+
+    <!-- 文字 -->
+    <color name="text_primary">#E6EDF3</color>
+    <color name="text_secondary">#8B98A5</color>
+    <color name="text_tertiary">#54657A</color>
+    <color name="text_on_accent">#04121E</color>
+    <color name="text_danger">#FF6E6E</color>
+
+    <!-- 图标 -->
+    <color name="ic_launcher_background">#0B1626</color>
 </resources>

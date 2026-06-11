@@ -2,152 +2,130 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF000000">
+    android:background="@color/bg_canvas">
 
     <com.macremote.app.RemoteCanvasView
         android:id="@+id/remote_canvas"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <!-- 悬浮控制条：半透明胶囊，居中悬挂在顶部 -->
     <HorizontalScrollView
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:background="#A6101418"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/bg_toolbar"
+        android:paddingStart="8dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="6dp"
         android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btn_keyboard"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="52dp"
-                android:text="@string/key_keyboard"
-                android:textColor="#FFFFFF" />
+                style="@style/ToolKey"
+                android:text="@string/key_keyboard" />
 
             <Button
                 android:id="@+id/btn_esc"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="52dp"
-                android:text="@string/key_esc"
-                android:textColor="#FFFFFF" />
+                style="@style/ToolKey"
+                android:text="@string/key_esc" />
 
             <Button
                 android:id="@+id/btn_tab"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="52dp"
-                android:text="@string/key_tab"
-                android:textColor="#FFFFFF" />
+                style="@style/ToolKey"
+                android:text="@string/key_tab" />
 
             <Button
                 android:id="@+id/btn_cmd"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="48dp"
-                android:text="@string/key_cmd"
-                android:textColor="#FFFFFF" />
+                style="@style/ToolKey"
+                android:text="@string/key_cmd" />
 
             <Button
                 android:id="@+id/btn_opt"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="48dp"
-                android:text="@string/key_opt"
-                android:textColor="#FFFFFF" />
+                style="@style/ToolKey"
+                android:text="@string/key_opt" />
 
             <Button
                 android:id="@+id/btn_ctrl"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="48dp"
-                android:text="@string/key_ctrl"
-                android:textColor="#FFFFFF" />
+                style="@style/ToolKey"
+                android:text="@string/key_ctrl" />
 
             <Button
                 android:id="@+id/btn_shift"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="48dp"
-                android:text="@string/key_shift"
-                android:textColor="#FFFFFF" />
+                style="@style/ToolKey"
+                android:text="@string/key_shift" />
 
             <Button
                 android:id="@+id/btn_left"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="44dp"
-                android:text="@string/key_left"
-                android:textColor="#FFFFFF" />
+                style="@style/ToolKey"
+                android:text="@string/key_left" />
 
             <Button
                 android:id="@+id/btn_up"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="44dp"
-                android:text="@string/key_up"
-                android:textColor="#FFFFFF" />
+                style="@style/ToolKey"
+                android:text="@string/key_up" />
 
             <Button
                 android:id="@+id/btn_down"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="44dp"
-                android:text="@string/key_down"
-                android:textColor="#FFFFFF" />
+                style="@style/ToolKey"
+                android:text="@string/key_down" />
 
             <Button
                 android:id="@+id/btn_right"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="44dp"
-                android:text="@string/key_right"
-                android:textColor="#FFFFFF" />
+                style="@style/ToolKey"
+                android:text="@string/key_right" />
 
             <Button
                 android:id="@+id/btn_paste"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="52dp"
-                android:text="@string/key_paste"
-                android:textColor="#FFFFFF" />
+                style="@style/ToolKey"
+                android:text="@string/key_paste" />
 
             <Button
                 android:id="@+id/btn_disconnect"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="52dp"
+                style="@style/ToolKey"
                 android:text="@string/key_disconnect"
-                android:textColor="#FF8A80" />
+                android:textColor="@color/text_danger" />
         </LinearLayout>
     </HorizontalScrollView>
 
-    <TextView
-        android:id="@+id/status_text"
+    <!-- 连接状态 HUD -->
+    <LinearLayout
+        android:id="@+id/status_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp" />
+        android:background="@drawable/bg_card"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingStart="36dp"
+        android:paddingTop="28dp"
+        android:paddingEnd="36dp"
+        android:paddingBottom="28dp">
+
+        <ProgressBar
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:indeterminateTint="@color/accent" />
+
+        <TextView
+            android:id="@+id/status_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp" />
+    </LinearLayout>
 </FrameLayout>

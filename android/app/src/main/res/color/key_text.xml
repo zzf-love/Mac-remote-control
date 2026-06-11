@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 工具键文字：选中（粘滞键点亮）时切换为深色，保证霓虹底上可读 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true" android:color="@color/text_on_accent" />
+    <item android:color="@color/text_primary" />
+</selector>

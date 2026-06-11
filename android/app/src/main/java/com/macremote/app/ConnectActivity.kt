@@ -15,6 +15,13 @@ class ConnectActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_connect)
 
+        // 入场淡入 + 轻微上浮
+        findViewById<android.view.View>(R.id.connect_root).apply {
+            alpha = 0f
+            translationY = 24f
+            animate().alpha(1f).translationY(0f).setDuration(380).start()
+        }
+
         val prefs = getSharedPreferences("connection", Context.MODE_PRIVATE)
         val hostInput = findViewById<EditText>(R.id.input_host)
         val portInput = findViewById<EditText>(R.id.input_port)

@@ -32,6 +32,7 @@ class RemoteActivity : Activity(), RemoteInputSink {
     }
 
     private lateinit var canvasView: RemoteCanvasView
+    private lateinit var statusCard: View
     private lateinit var statusText: TextView
     private var client: RfbClient? = null
     private var bitmap: Bitmap? = null
@@ -48,6 +49,7 @@ class RemoteActivity : Activity(), RemoteInputSink {
 
         canvasView = findViewById(R.id.remote_canvas)
         canvasView.sink = this
+        statusCard = findViewById(R.id.status_card)
         statusText = findViewById(R.id.status_text)
         setupToolbar()
 
@@ -73,7 +75,9 @@ class RemoteActivity : Activity(), RemoteInputSink {
             val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
             bitmap = bmp
             ui.post {
-                statusText.visibility = View.GONE
+                statusCard.animate().alpha(0f).setDuration(220).withEndAction {
+                    statusCard.visibility = View.GONE
+                }.start()
                 canvasView.setRemoteBitmap(bmp)
             }
         }
@@ -177,11 +181,9 @@ class RemoteActivity : Activity(), RemoteInputSink {
             val down = !(stickyModifiers[keysym] ?: false)
             stickyModifiers[keysym] = down
             client?.sendKeyEvent(keysym, down)
+            // 视觉状态由 btn_toolkey/key_text 的 state_selected 选择器呈现
             button.isSelected = down
-            button.alpha = if (down) 1.0f else 0.55f
-            button.setBackgroundColor(if (down) 0x6633B5E5 else 0x00000000)
         }
-        button.alpha = 0.55f
     }
 
     private fun enterImmersiveMode() {

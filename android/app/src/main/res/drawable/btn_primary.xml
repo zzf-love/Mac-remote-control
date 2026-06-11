@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 主行动按钮：青→蓝渐变胶囊 + 波纹反馈 -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#66FFFFFF">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="0"
+                android:startColor="@color/accent"
+                android:endColor="@color/accent_deep" />
+            <corners android:radius="28dp" />
+        </shape>
+    </item>
+</ripple>

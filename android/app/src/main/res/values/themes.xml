@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- 用平台自带 Material 主题，App 零外部依赖 -->
+    <!-- 平台 Material 主题之上的深空控制台风格，App 保持零外部依赖 -->
     <style name="Theme.MacRemote" parent="android:Theme.Material.NoActionBar">
-        <item name="android:colorPrimary">#1E88E5</item>
-        <item name="android:colorPrimaryDark">#0D47A1</item>
-        <item name="android:colorAccent">#40C4FF</item>
-        <item name="android:windowBackground">#FF12161A</item>
+        <item name="android:windowBackground">@drawable/bg_app</item>
+        <item name="android:colorPrimary">@color/accent</item>
+        <item name="android:colorPrimaryDark">@color/bg_canvas</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:statusBarColor">@color/bg_deep</item>
+        <item name="android:navigationBarColor">@color/bg_deep</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:textColorHint">@color/text_tertiary</item>
     </style>
 </resources>
