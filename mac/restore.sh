@@ -36,9 +36,9 @@ echo
 HAVE_BACKUP=no
 if [ -f "$BACKUP_FILE" ]; then
     HAVE_BACKUP=yes
-    ok "找到原始状态快照：$BACKUP_FILE（记录于 $(read_state CREATED_AT)）"
+    ok "找到原始状态快照：${BACKUP_FILE}（记录于 $(read_state CREATED_AT)）"
 else
-    warn "没找到快照文件 $BACKUP_FILE（可能 setup.sh 是旧版本时跑的）。"
+    warn "没找到快照文件 ${BACKUP_FILE}（可能 setup.sh 是旧版本时跑的）。"
     warn "将按保守方式引导还原：每一步都问你，拿不准的不动。"
 fi
 echo
@@ -158,7 +158,7 @@ if vnc_listening; then warn "VNC 服务：仍在线"; else ok "VNC 服务：已�
 if [ "$HAVE_BACKUP" = "yes" ]; then
     ARCHIVE="$BACKUP_FILE.restored-$(date '+%Y%m%d-%H%M%S')"
     mv "$BACKUP_FILE" "$ARCHIVE"
-    ok "快照已归档为 $ARCHIVE（下次跑 setup.sh 会重新记录新快照）"
+    ok "快照已归档为 ${ARCHIVE}（下次跑 setup.sh 会重新记录新快照）"
 fi
 echo "手机端如不再使用：直接卸载「Mac 遥控」App 和 Tailscale 即可，"
 echo "App 的连接信息只存在手机本地，卸载即清除。"

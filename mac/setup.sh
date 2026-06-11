@@ -58,7 +58,7 @@ if [ ! -f "$BACKUP_FILE" ]; then
         echo "PMSET_AC_TCPKEEPALIVE=$(get_ac_pmset tcpkeepalive)"
         echo "PMSET_AC_WOMP=$(get_ac_pmset womp)"
     } > "$BACKUP_FILE"
-    ok "已把原始状态快照到 $BACKUP_FILE（还原时用）"
+    ok "已把原始状态快照到 ${BACKUP_FILE}（还原时用）"
     echo
 fi
 
@@ -152,4 +152,4 @@ fi
 echo
 echo "提示：先让手机连 Mac 同一 WiFi，用局域网 IP 试连验证服务端没问题，"
 echo "      再换 Tailscale IP + 手机流量验证“随时随地”。"
-echo "还原：随时运行 bash restore.sh，会按 $BACKUP_FILE 的快照精确回滚。"
+echo "还原：随时运行 bash restore.sh，会按 ${BACKUP_FILE} 的快照精确回滚。"
